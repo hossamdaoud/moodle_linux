@@ -79,7 +79,7 @@ global \$CFG;
 \$CFG->wwwroot = 'https://${MOODLE_FQDN}/moodle';
 \$CFG->dirroot = '/usr/share/webapps/moodle';
 \$CFG->dataroot = '/var/lib/moodle';
-\$CFG->directorypermissions = 777;
+\$CFG->directorypermissions = 0750;
 \$CFG->admin = 'admin';
 
 \$CFG->pathtodu = '/usr/bin/du';
