@@ -181,6 +181,9 @@ Include conf/extra/moodle.conf
 EOF
 
   sudo systemctl restart httpd
+  sudo chmod -R 0777 /var/lib/moodle
+  sudo chmod -R 0777 /usr/share/webapps/moodle
+
 }
 
 moodle_main()
