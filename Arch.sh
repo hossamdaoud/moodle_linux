@@ -57,7 +57,7 @@ moodle_install()
   sudo pacman -Sy --noconfirm git base-devel
   git clone https://aur.archlinux.org/moodle.git
   cd moodle
-  makepkg -si --noconfirm
+  makepkg -s --noconfirm
   sudo pacman -U --noconfirm ./*.pkg.tar.xz
   cd ..
 
