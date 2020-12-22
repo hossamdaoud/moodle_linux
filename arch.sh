@@ -62,7 +62,7 @@ moodle_install()
   cd /usr/share/webapps
   sudo wget http://sourceforge.net/projects/moodle/files/Moodle/stable39/moodle-latest-39.tgz
   sudo tar zxvf moodle-latest-39.tgz -C /usr/share/webapps/
-  sudo cd /usr/share/webapps/moodle
+  cd /usr/share/webapps/moodle
   cat <<EOF | sudo tee config.php
 <?php
 unset(\$CFG);
