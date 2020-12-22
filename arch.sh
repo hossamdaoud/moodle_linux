@@ -60,10 +60,9 @@ moodle_install()
   sudo mkdir -p /var/lib/moodle
   sudo chmod -R 777 /var/lib/moodle
   cd /usr/share/webapps
-  wget http://sourceforge.net/projects/moodle/files/Moodle/stable39/moodle-latest-39.tgz
-
+  sudo wget http://sourceforge.net/projects/moodle/files/Moodle/stable39/moodle-latest-39.tgz
   sudo tar zxvf moodle-latest-39.tgz -C /usr/share/webapps/
-  cd /usr/share/webapps/moodle
+  sudo cd /usr/share/webapps/moodle
   cat <<EOF | sudo tee config.php
 <?php
 unset(\$CFG);
