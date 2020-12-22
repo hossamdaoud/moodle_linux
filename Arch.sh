@@ -29,7 +29,7 @@ y
 EOF
 
   cat<<EOF | sudo mysql -uroot -p${MYSQL_PASSWD}
-CREATE DATABASE moodle DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS moodle DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 GRANT ALL PRIVILEGES ON moodle.* TO moodle@localhost
   IDENTIFIED BY '${MOODLE_PASSWD}';
 exit
@@ -39,7 +39,7 @@ EOF
 php_install()
 {
   # Enable PHP extension.
-  sudo pacman -Sy --noconfirm php php-mcrypt
+  sudo pacman -Sy --noconfirm php
   sudo sed -i /etc/php/php.ini \
        -e 's/^;extension=pdo_mysql.so/extension=pdo_mysql.so/g' \
        -e 's/^;extension=mysqli.so/extension=mysqli.so/g' \
@@ -57,7 +57,7 @@ moodle_install()
   sudo pacman -Sy --noconfirm git base-devel
   git clone https://aur.archlinux.org/moodle.git
   cd moodle
-  makepkg -s --noconfirm
+  makepkg -si --noconfirm
   sudo pacman -U --noconfirm ./*.pkg.tar.xz
   cd ..
 
