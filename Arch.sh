@@ -55,12 +55,11 @@ php_install()
 moodle_install()
 {
   sudo pacman -Sy --noconfirm git base-devel
-  git clone https://aur.archlinux.org/moodle.git
-  cd moodle
-  makepkg -s --noconfirm
-  sudo pacman -U --noconfirm ./*.pkg.tar.xz
-  cd ..
-
+  sudo mkdir -p /usr/share/webapps
+  sudo mkdir -p /var/lib/moodle
+  sudo chmod -R 777 /var/lib/moodle
+  cd /usr/share/webapps
+  sudo git clone https://github.com/moodle/moodle
   cd /usr/share/webapps/moodle
   cat <<EOF | sudo tee config.php
 <?php
@@ -191,3 +190,11 @@ moodle_main()
 }
 
 moodle_main
+# After the script finished:
+# sudo nano /etc/php/php.ini 
+#UnComment:
+#extension=curl 
+#extension=iconv
+#extension=mysqli 
+#extension=zip 
+#sudo systemctl restart httpd
