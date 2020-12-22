@@ -2,9 +2,9 @@
 
 set -e
 
-[ -z "${MYSQL_PASSWD}" ] && MYSQL_PASSWD=mysql
-[ -z "${MOODLE_PASSWD}" ] && MOODLE_PASSWD=moodle
-[ -z "${MOODLE_FQDN}" ] && MOODLE_FQDN=moodle.hiroom2.com
+[ -z "${MYSQL_PASSWD}" ] && MYSQL_PASSWD=H@ssam00
+[ -z "${MOODLE_PASSWD}" ] && MOODLE_PASSWD=H@ssam00
+[ -z "${MOODLE_FQDN}" ] && MOODLE_FQDN=arch
 
 mysql_install()
 {
