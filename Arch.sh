@@ -77,7 +77,7 @@ global \$CFG;
 \$CFG->wwwroot = 'https://${MOODLE_FQDN}/moodle';
 \$CFG->dirroot = '/usr/share/webapps/moodle';
 \$CFG->dataroot = '/var/lib/moodle';
-\$CFG->directorypermissions = 0750;
+\$CFG->directorypermissions = 777;
 \$CFG->admin = 'admin';
 
 \$CFG->pathtodu = '/usr/bin/du';
@@ -170,8 +170,8 @@ Alias /moodle /usr/share/webapps/moodle
   php_flag file_uploads On
   php_flag session.auto_start Off
   php_flag session.bug_compat_warn Off
-  php_value upload_max_filesize 2M
-  php_value post_max_size 2M
+  php_value upload_max_filesize 600M
+  php_value post_max_size 600M
 </Directory>
 EOF
   cat <<EOF | sudo tee -a /etc/httpd/conf/httpd.conf
