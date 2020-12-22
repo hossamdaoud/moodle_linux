@@ -29,7 +29,7 @@ y
 EOF
 
   cat<<EOF | sudo mysql -uroot -p${MYSQL_PASSWD}
-CREATE DATABASE IF NOT EXISTS moodle DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS moodle DEFAULT CHARACTER SET utf8mb4 COLLATE utf8_unicode_ci;
 GRANT ALL PRIVILEGES ON moodle.* TO moodle@localhost
   IDENTIFIED BY '${MOODLE_PASSWD}';
 exit
@@ -39,7 +39,7 @@ EOF
 php_install()
 {
   # Enable PHP extension.
-  sudo pacman -Sy --noconfirm php
+  sudo pacman -Sy --noconfirm php php-gd php-intl
   sudo sed -i /etc/php/php.ini \
        -e 's/^;extension=pdo_mysql.so/extension=pdo_mysql.so/g' \
        -e 's/^;extension=mysqli.so/extension=mysqli.so/g' \
@@ -191,10 +191,21 @@ moodle_main()
 
 moodle_main
 # After the script finished:
-# sudo nano /etc/php/php.ini 
+
+# sudo nano /etc/php/php.ini
 #UnComment:
-#extension=curl 
+#extension=curl
 #extension=iconv
-#extension=mysqli 
-#extension=zip 
+#extension=mysqli
+#extension=zip
+#extension=gd
+#extension=intl
+#extension=xmlrpc
+#extension=soap
+#zend_extension=opcache.enable
+
+#[intl]
+#intl.default_locale = en_utf8
+#intl.error_level = E_WARNING
+
 #sudo systemctl restart httpd
