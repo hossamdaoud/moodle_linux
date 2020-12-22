@@ -56,12 +56,13 @@ php_install()
 moodle_install()
 {
   sudo pacman -Sy --noconfirm git base-devel
-  git clone https://aur.archlinux.org/moodle.git
-  cd moodle
-  makepkg -s --noconfirm
-  sudo pacman -U --noconfirm ./*.pkg.tar.xz
-  cd ..
+  sudo mkdir -p /usr/share/webapps
+  sudo mkdir -p /var/lib/moodle
+  sudo chmod -R 777 /var/lib/moodle
+  cd /usr/share/webapps
+  wget http://sourceforge.net/projects/moodle/files/Moodle/stable39/moodle-latest-39.tgz
 
+  sudo tar zxvf moodle-latest-39.tgz -C /usr/share/webapps/
   cd /usr/share/webapps/moodle
   cat <<EOF | sudo tee config.php
 <?php
